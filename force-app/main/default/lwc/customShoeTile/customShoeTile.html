@@ -1,0 +1,61 @@
+<!-- sldsValidatorIgnore -->
+<template>
+  <div class="slds-var-m-around_medium">
+    <div class="content">
+      <div class="heart">
+        <div>
+          <button
+           class="slds-button slds-button_brand favButton"
+            onclick={favouriteHandlerClick}
+          >
+            💚
+          </button>
+
+          <img
+            src={customshoe.Picture_URL__c}
+            alt="shoe Image"
+            class="slds-align_absolute-center shoeImage"
+          />
+        </div>
+        <div>
+          <p class="title slds-align_absolute-center shoeBrand">{customshoe.Brand__c}</p>
+          <p class="title slds-align_absolute-center shoeName">
+            {customshoe.Name}
+          </p>
+          <p class="slds-align_absolute-center">{customshoe.Category__c}</p>
+          <p class="slds-align_absolute-center">Type: {customshoe.Type__c}</p>
+          <p class="slds-align_absolute-center">Size: {customshoe.Size__c}</p>
+          <p class="slds-align_absolute-center">
+            Price:&nbsp;
+            <lightning-formatted-number
+              format-style="currency"
+              currency-code="EUR"
+              value={customshoe.Price__c}
+              class="price"
+              maximum-fraction-digits="0"
+            ></lightning-formatted-number>
+          </p>
+
+          <div class="slds-m-top_small slds-m-bottom_medium">
+            <lightning-button
+              variant="success"
+              label="View"
+              title="Primary action"
+              onclick={viewHandleClick}
+              class="view"
+            ></lightning-button>
+
+            
+            <lightning-button
+              variant="success"
+              label="Add To Cart"
+              title="Primary action"
+              onclick={addCartHandleClick}
+              class="addCart"
+            ></lightning-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

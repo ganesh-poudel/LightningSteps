@@ -1,0 +1,30 @@
+<template>
+  <lightning-card title={brandName} icon-name="">
+    <template if:true={recordId}>
+      <div class="slds-m-around_medium">
+        <h6 style="font-weight: bold">{shoeName}</h6>
+        <img src={shoePictureUrl} alt="shoe picture" />
+        <lightning-record-view-form
+          object-api-name="Shoe__c"
+          record-id={recordId}
+          density="compact"
+          onload={handleRecordLoaded}
+        >
+          <lightning-output-field field-name={brand}> </lightning-output-field>
+          <lightning-output-field field-name={name}> </lightning-output-field>
+          <lightning-output-field field-name={color}> </lightning-output-field>
+        </lightning-record-view-form>
+      </div>
+    </template>
+    <template if:false={recordId}>
+      <p style="text-align: center; font-weight: bold">
+        Click view to see details
+      </p>
+      <img
+        src="https://image.shutterstock.com/z/stock-vector-sneaker-filled-vector-icon-modern-simple-isolated-sign-pixel-perfect-vector-illustration-for-1046788879.jpg"
+        alt="shoe logo"
+        style="width: 450px; height: 300px"
+      />
+    </template>
+  </lightning-card>
+</template>

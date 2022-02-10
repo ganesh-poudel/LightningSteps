@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This event is fired when shoe is Selected</description>
+    <isExposed>false</isExposed>
+    <lightningMessageFields>
+        <description>Selected shoe Id</description>
+        <fieldName>shoeId</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>Selected shoe Type</description>
+        <fieldName>Type__c</fieldName>
+    </lightningMessageFields>
+    <masterLabel>ShoeSelected</masterLabel>
+</LightningMessageChannel>

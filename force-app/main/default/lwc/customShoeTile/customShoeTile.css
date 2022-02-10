@@ -1,0 +1,40 @@
+.shoeImage {
+  height: 100px;
+  max-width: initial;
+  pointer-events: none;
+  margin-bottom: 10px;
+}
+.title {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.content {
+  padding: 10px;
+  background-color: rgb(246, 246, 246);
+  border-radius: 0.44rem;
+  width: 200px;
+
+  border: 2px solid rgb(58, 56, 56);
+}
+.addCart {
+  margin-top: 30px;
+  margin-left: 10px;
+  background-color: grey;
+}
+
+.favButton {
+  float: right;
+}
+.favButton:hover {
+  transform: scale(1.1);
+}
+
+.shoeName {
+  font-size: 14px;
+  color: rgb(4, 63, 90);
+}
+
+.shoeBrand{
+  font-size: var(--lwc-squareIconMediumContent, 1rem);
+  color:rgb(71, 33, 0);
+}

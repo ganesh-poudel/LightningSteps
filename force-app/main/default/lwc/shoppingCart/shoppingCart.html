@@ -1,0 +1,201 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
+<template>
+  <lightning-card title="Shoping Cart">
+    <div class="slds-clearfix">
+      <div class="slds-float_left slds-m-left_xx-large">
+        <p
+          style="font-size: 30px; padding-right: 30px; float: left"
+          onclick={handleFavItemDetails}
+        >
+          💚{shosFavourite.length}
+        </p>
+      </div>
+      <div class="slds-float_right">
+        <p
+          style="font-size: 30px; padding-right: 30px"
+          onclick={handleCartItemDetails}
+        >
+          🛒{shoesInCart.length}
+        </p>
+      </div>
+    </div>
+    <template if:true={isFavModalOpen}>
+      <section
+        role="dialog"
+        tabindex="-1"
+        aria-labelledby="modal-heading-01"
+        aria-modal="true"
+        class="slds-modal slds-fade-in-open"
+      >
+        <div class="slds-modal__container">
+          <button
+            class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+          >
+            <svg
+              class="slds-button__icon slds-button__icon_large"
+              aria-hidden="true"
+            >
+              <use
+                xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"
+              ></use>
+            </svg>
+            <span class="slds-assistive-text">Cancel and close</span>
+          </button>
+          <div class="slds-modal__header">
+            <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">
+              Favourite Shoes
+            </h1>
+          </div>
+          <div
+            class="slds-modal__content slds-p-around_medium"
+            id="modal-content-id-2"
+          ></div>
+          <div class="slds-modal__footer">
+            <div
+              class="slds-modal__content slds-p-around_medium"
+              id="modal-content-id-3"
+            >
+            <div class="slds-scrollable_y" style="height:30rem;width:30rem">
+              <ul
+                class="slds-has-dividers_around slds-has-block-links_space myItem"
+              >
+                <template for:each={shosFavourite} for:item="item">
+                  <li
+                    class="slds-item myItem"
+                    key={item.Shoe__c}
+                    style="padding-bottom: 17px"
+                  >
+                    <img src={item.Picture_URL__c} alt="fav shoe" >
+                    <a href="#"
+                      ><P style ='float:left'>{item.Name}&nbsp;&nbsp; €{item.Price__c}</p>
+                      <lightning-icon
+                        icon-name="action:delete"
+                        alternative-text="Delete"
+                        size="xx-small"
+                        data-item={item.Shoe__c}
+                        data-price={item.Price__c}
+                        title="Delete"
+                        style="float: right"
+                        onclick={handleDeleteFavItem}
+                      ></lightning-icon
+                    ></a>
+                  </li>
+                </template>
+
+                <template if:false={shosFavourite.length}>
+                  <li
+                    class="slds-item myItem"
+                    style="padding-bottom: 30px; padding-left: 50px"
+                  >
+                    <a href="#">Favourite Is Empty </a>
+                  </li>
+                </template>
+              </ul>
+              </div>
+            </div>
+            <button
+              class="slds-button slds-button_neutral"
+              aria-label="Cancel and close"
+              onclick={handleCloseFavModal}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </section>
+      <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </template>
+
+    <template if:true={isModalOpen}>
+      <section
+        role="dialog"
+        tabindex="-1"
+        aria-labelledby="modal-heading-01"
+        aria-modal="true"
+        aria-describedby="modal-content-id-1"
+        class="slds-modal slds-fade-in-open"
+      >
+        <div class="slds-modal__container">
+          <header class="slds-modal__header">
+            <h2 id="modal-heading-02" class="slds-modal__title slds-hyphenate">
+              Items In The Cart
+            </h2>
+          </header>
+          <div
+            class="slds-modal__content slds-p-around_medium"
+            id="modal-content-id-1"
+          >
+            <ul
+              class="slds-has-dividers_around slds-has-block-links_space myItem"
+            >
+              <template for:each={shoesInCart} for:item="item">
+                <li
+                  class="slds-item myItem"
+                  key={item.Shoe__c}
+                  style="padding-bottom:30px"
+                >
+                  <a href="#"
+                    >{item.Name}&nbsp;&nbsp; €{item.Price__c}
+                    <lightning-icon
+                      icon-name="action:delete"
+                      alternative-text="Delete"
+                      size="xx-small"
+                      data-item={item.Shoe__c}
+                      data-price={item.Price__c}
+                      title="Delete"
+                      style="float: right"
+                      onclick={handleDeleteItem}
+                    ></lightning-icon
+                  ></a>
+                  <p></p>
+                </li>
+              </template>
+              <template if:false={shoesInCart.length}>
+                <li
+                  class="slds-item myItem"
+                  style="padding-bottom: 30px; padding-left: 50px"
+                >
+                  <a href="#">Cart Is Empty </a>
+                </li>
+              </template>
+              <template if:true={shoesInCart.length}>
+                <li
+                  class="slds-item myItem"
+                  style="padding-bottom: 30px; padding-left: 50px"
+                >
+                  <a href="#"
+                    >Total Amount &nbsp;&nbsp;&nbsp;&nbsp;€{totalCartPrice}
+                  </a>
+                </li>
+              </template>
+            </ul>
+          </div>
+          <footer class="slds-modal__footer slds-modal__footer_directional">
+            <button
+              class="slds-button slds-button_neutral"
+              onclick={handleCloseModal}
+            >
+              Continue Shopping
+            </button>
+            <button
+              class="slds-button slds-button_brand"
+              if:true={shoesInCart.length}
+              onclick={handleProceedToCheckOut}
+            >
+              Check-Out
+            </button>
+            <button
+              class="slds-button slds-button_brand"
+              if:false={shoesInCart.length}
+              disabled
+            >
+              Check-Out
+            </button>
+          </footer>
+        </div>
+      </section>
+      <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+  </lightning-card>
+</template>

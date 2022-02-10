@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This event is fired when shoe is added</description>
+    <isExposed>false</isExposed>
+    <lightningMessageFields>
+        <description>Added shoe Id</description>
+        <fieldName>Shoe__c</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>Added shoe brand</description>
+        <fieldName>Brand__c</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>Added shoe picture</description>
+        <fieldName>Picture_URL__c</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>Added shoe price</description>
+       <fieldName>Price__c</fieldName>
+    </lightningMessageFields>
+       <lightningMessageFields>
+        <description>Added shoe Name</description>
+       <fieldName>Name</fieldName>
+    </lightningMessageFields>
+    <masterLabel>ShoeAdded</masterLabel>
+</LightningMessageChannel>
+
+  
+        
+        

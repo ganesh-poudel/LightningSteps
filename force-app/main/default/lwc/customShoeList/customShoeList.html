@@ -1,0 +1,14 @@
+<template>
+  <lightning-card title="Shoes Available" class="slds-text-align_center">
+    <div class="slds-p-around_medium wrapper">
+      <template if:true={allShoes.length}>
+        <div class="content">
+          <template for:each={allShoes} for:item="eachShoe">
+            <c-custom-shoe-tile customshoe={eachShoe} key={eachShoe.Id} onselected = {handleShoeSelected} onadded ={handleShoeAdded} onfav ={handleFavouriteShoe}>
+            </c-custom-shoe-tile>
+          </template>
+        </div>
+      </template>
+    </div>
+  </lightning-card>
+</template>

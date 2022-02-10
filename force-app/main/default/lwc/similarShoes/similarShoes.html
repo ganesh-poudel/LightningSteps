@@ -1,0 +1,55 @@
+<template>
+  <lightning-card
+    title="Similar Shoes"
+    class="slds-text-align_center similarShoeCard"
+  >
+    <div class="slds-scrollable_y" style="height: 18rem; width: 30rem">
+      <template if:true={allSimilarShoe.length}>
+        <div class="">
+          <template for:each={allSimilarShoe} for:item="eachShoe">
+            <div key={eachShoe.Id} class="similarContainer">
+              <div class="slds-var-m-around_medium">
+                <div class="content">
+                  <div class="heart">
+                    <img
+                      src={eachShoe.Picture_URL__c}
+                      alt="shoe Image"
+                      class="slds-align_absolute-center shoeImageSimilar"
+                    />
+                  </div>
+                  <div>
+                    <p class="title slds-align_absolute-center shoeName">
+                      {eachShoe.Name}
+                    </p>
+                    <p class="slds-align_absolute-center">
+                      {eachShoe.Category__c}
+                    </p>
+                    <p class="slds-align_absolute-center">
+                     Type: {eachShoe.Type__c}
+                    </p>
+                    <p class="slds-align_absolute-center">
+                      Color: {eachShoe.Color__c}
+                    </p>
+                    <p class="slds-align_absolute-center">
+                      Size: {eachShoe.Size__c}
+                    </p>
+                    <p class="slds-align_absolute-center">
+                      Price:&nbsp;
+                      <lightning-formatted-number
+                        format-style="currency"
+                        currency-code="EUR"
+                        value={eachShoe.Price__c}
+                        class="price"
+                        maximum-fraction-digits="0"
+                      ></lightning-formatted-number>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </template>
+    </div>
+  </lightning-card>
+</template>

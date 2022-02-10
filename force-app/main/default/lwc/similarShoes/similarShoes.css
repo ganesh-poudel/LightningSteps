@@ -1,0 +1,12 @@
+.similarShoeCard {
+  text-align: center;
+}
+.shoeImageSimilar {
+  width: 200px;
+  height: 125px;
+}
+
+.content{
+    border:1mm solid black;
+    border-radius: 5px;
+}
